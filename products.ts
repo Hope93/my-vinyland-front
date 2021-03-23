@@ -3,12 +3,12 @@ export type Product = {
   name: string;
   category: {
     name: string;
-    friendlyURL: string;
+    friendlyURL: string | null;
   };
-  friendlyURL: string;
-  description: string;
+  friendlyURL: string | null;
+  description: string | null;
   price: number;
-  discountedPrice: number;
+  discountedPrice: number | null;
   image: string;
 };
 
