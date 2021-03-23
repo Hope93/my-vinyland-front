@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { createContext, useContext, useReducer } from "react";
+import appReducer from "../reducers/app-reducer";
+import type {Action} from '../reducers/app-reducer'
+import type { State } from '../states/app-state';
+import { defaultState } from "../states/app-state";
 
-// can provide an argument of things we wanna access
-const AppContext = React.createContext(null);
+// TODO change this
+interface ContextProps {
+  cart: State;
+  dispatch: React.Dispatch<Action>;
+}
 
-export default AppContext;
+const AppContext = createContext({} as ContextProps);
+
+type AppWrapperProps = {
+  children: React.ReactNode;
+};
+
+export function AppWrapper({ children }: AppWrapperProps) {
+  const [cart, dispatch] = useReducer(appReducer, defaultState);
+
+  return (
+    <AppContext.Provider value={{ cart, dispatch }}>
+      {children}
+    </AppContext.Provider>
+  );
+}
+
+export function useAppContext() {
+  return useContext(AppContext);
+}

@@ -1,7 +1,7 @@
 import type { State } from "../states/app-state";
 import { Product } from "../products";
 
-type Action =
+export type Action =
   | { type: "POPULATE_PRODUCTS", products: Product[] }
   | { type: "ADD_PRODUCT", product: Product }
   | { type: "REMOVE_PRODUCT", id: number }
