@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useReducer } from "react";
 import appReducer from "../reducers/app-reducer";
-import type {Action} from '../reducers/app-reducer'
-import type { State } from '../states/app-state';
-import { defaultState } from "../states/app-state";
+import type { Action } from "../reducers/app-reducer";
+import type { State } from "../store/states/app-state";
+import { defaultState } from "../store/states/app-state";
 
 // TODO change this
 interface ContextProps {

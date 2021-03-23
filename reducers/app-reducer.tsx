@@ -1,4 +1,4 @@
-import type { State } from "../states/app-state";
+import type { State } from "../store/states/app-state";
 import { Product } from "../products";
 
 export type Action =
