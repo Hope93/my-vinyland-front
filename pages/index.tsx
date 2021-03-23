@@ -3,6 +3,8 @@ import ProductCard from "../components/ProductCard";
 import vinylProducts, { Product } from "../products";
 
 const Home = () => {
+
+  const title = "Vinyls List";
   // need to keep track of state and local storage for cart
   const products = vinylProducts.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
@@ -10,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <Layout>
+      <Layout headerTitle={title}>
         {products}
       </Layout>
     </>

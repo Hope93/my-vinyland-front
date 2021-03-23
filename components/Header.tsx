@@ -1,8 +1,17 @@
 import Link from "next/link";
 import Navigation from "./Navigation";
 
+type HeaderProps = {
+  pageTitle: string;
+};
+
+const InternalTitle = ({ pageTitle }: { pageTitle: string }) => (
+  <h1>{pageTitle}</h1>
+);
+
 // optional prop for search form if it's the right page
-const Header = () => (
+const Header = ({ pageTitle }: HeaderProps) => (
+  // need to keep track of state and local storage
   <>
     <header>
       <Navigation />
@@ -21,6 +30,7 @@ const Header = () => (
           </svg>
         </a>
       </Link>
+      <InternalTitle pageTitle={pageTitle} />
     </header>
   </>
 );
