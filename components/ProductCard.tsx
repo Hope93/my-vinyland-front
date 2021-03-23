@@ -1,18 +1,41 @@
+import { useState, useEffect } from "react";
 import type { Product } from "../products";
+import { useAppContext } from "../context/app-context";
 
-// need to keep track of states
 type ProductCardProps = {
   product: Product;
 };
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { cart, dispatch } = useAppContext();
+
+  // initial amount in cart of this item
+  const defaultAmount =
+    cart.length > 0
+      ? cart.filter((cartProduct) => cartProduct.id == product.id).length
+      : null;
+  const [amount, setAmount] = useState<number | null>(defaultAmount);
+
+  // any updates to cart are reflected here in the amount
+  useEffect(() => {
+    const prodAmount = cart.filter(
+      (cartProduct) => cartProduct.id == product.id
+    ).length;
+
+    setAmount(prodAmount > 0 ? prodAmount : null);
+  }, [cart]);
+
   return (
     <div>
       <img src={product.image} />
       <p>{product.category.name}</p>
       <p>{product.name}</p>
       <p>{product.price}</p>
-      <button>
+      <button
+        onClick={() => {
+          dispatch({ type: "ADD_PRODUCT", product });
+        }}
+      >
         Add to cart
         <svg viewBox="0 0 24 24">
           <path
@@ -22,6 +45,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           3h-4.195z"
           />
         </svg>
+        <div>{amount}</div>
       </button>
     </div>
   );
