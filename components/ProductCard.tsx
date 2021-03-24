@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Product } from "../products";
 import { useAppContext } from "../context/app-context";
+import { getProductAmount } from "../utils/cart";
 
 type ProductCardProps = {
   product: Product;
@@ -10,19 +11,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { cart, dispatch } = useAppContext();
 
   // initial amount in cart of this item
-  const defaultAmount =
-    cart.length > 0
-      ? cart.filter((cartProduct) => cartProduct.id == product.id).length
-      : null;
-  const [amount, setAmount] = useState<number | null>(defaultAmount);
+  const defaultAmount = getProductAmount(cart, product.id);
+  const [amount, setAmount] = useState<number>(defaultAmount);
 
   // any updates to cart are reflected here in the amount
   useEffect(() => {
-    const prodAmount = cart.filter(
-      (cartProduct) => cartProduct.id == product.id
-    ).length;
-
-    setAmount(prodAmount > 0 ? prodAmount : null);
+    setAmount(getProductAmount(cart, product.id));
   }, [cart]);
 
   return (
@@ -30,10 +24,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <img src={product.image} />
       <p>{product.category.name}</p>
       <p>{product.name}</p>
-      <p>{product.price}</p>
+      <p>{product.discountedPrice ? product.discountedPrice : product.price}</p>
       <button
         onClick={() => {
-          dispatch({ type: "ADD_PRODUCT", product });
+          dispatch({ type: "ADD_PRODUCT", item: product });
         }}
       >
         Add to cart
@@ -45,7 +39,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           3h-4.195z"
           />
         </svg>
-        <div>{amount}</div>
+        {amount > 0 && <div>{amount}</div>}
       </button>
     </div>
   );

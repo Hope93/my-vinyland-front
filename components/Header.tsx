@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAppContext } from "../context/app-context";
 import Navigation from "./Navigation";
+import Cart from "./Cart";
+import { getTotalProductAmount } from "../utils/cart";
 
 type HeaderProps = {
   pageTitle: string;
@@ -14,13 +16,14 @@ const InternalTitle = ({ pageTitle }: { pageTitle: string }) => (
 // optional prop for search form if it's the right page
 const Header = ({ pageTitle }: HeaderProps) => {
   const { cart } = useAppContext();
+
   // initial amount of products in the cart
-  const defaultAmount = cart.length > 0 ? cart.length : null;
-  const [amount, setAmount] = useState<number | null>(defaultAmount);
+  const defaultAmount = getTotalProductAmount(cart);
+  const [amount, setAmount] = useState<number>(defaultAmount);
 
   // any updates to cart are reflected here in the amount
   useEffect(() => {
-    setAmount(cart.length > 0 ? cart.length : null)
+    setAmount(getTotalProductAmount(cart));
   }, [cart]);
 
   return (
@@ -40,9 +43,10 @@ const Header = ({ pageTitle }: HeaderProps) => {
               2h13.239l3.474-12h1.929L24 3h-4.195z"
               />
             </svg>
-            <div>{amount}</div>
+            {amount > 0 && <div>{amount}</div>}
           </a>
         </Link>
+        <Cart />
         <InternalTitle pageTitle={pageTitle} />
       </header>
     </>

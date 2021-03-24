@@ -3,15 +3,14 @@ export type Product = {
   name: string;
   category: {
     name: string;
-    friendlyURL: string | null;
+    friendlyURL?: string;
   };
-  friendlyURL: string | null;
-  description: string | null;
+  friendlyURL?: string;
+  description?: string;
   price: number;
-  discountedPrice: number | null;
+  discountedPrice?: number;
   image: string;
 };
-
 const vinylProducts: Product[] = [
   {
     id: 1,
@@ -37,7 +36,6 @@ const vinylProducts: Product[] = [
     friendlyURL: "turn-on-the-bright-lights",
     description: "string",
     price: 119.99,
-    discountedPrice: null,
     image:
       "https://merchbar.imgix.net/product/vinylized/upc/45/744861054504.jpg?w=640&h=640",
   },
