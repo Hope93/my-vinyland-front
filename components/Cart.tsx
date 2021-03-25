@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAppContext } from "../context/app-context";
 import {
-  getProductAmount,
   getTotalPrice,
   getTotalProductAmount,
-  getShoppingList
+  getShoppingList,
 } from "../utils/cart";
+import { ListGroup, Toast, ToastHeader, Row, Col, ToastBody } from "reactstrap";
 
 const Cart = () => {
   const { cart } = useAppContext();
@@ -23,36 +23,36 @@ const Cart = () => {
   // any updates to cart are reflected here in the amount
   useEffect(() => {
     setAmount(getTotalProductAmount(cart));
-
     setPrice(getTotalPrice(cart));
-
     setCartList(getShoppingList(cart));
   }, [cart]);
 
   return (
-    <>
-      <div>My cart</div>
-      <div>{amount} items</div>
-      <div>
-        <ul>{cartList}</ul>
+    <Toast>
+      <ToastHeader>
+        <Row>
+          <Col>My cart</Col>
+          <Col>{amount} items</Col>
+        </Row>
+      </ToastHeader>
+      <ToastBody>
+        <ListGroup>{cartList}</ListGroup>
         {amount > 0 && (
-          <div>
-            <div>
-              <div>{totalPrice.toFixed(2)}</div>
-              <div>
-                <Link href="/cart">
-                  <a>View cart</a>
-                </Link>
-                <Link href="/checkout">
-                  <a>Finish order</a>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Row>
+            <Col>{totalPrice.toFixed(2)}</Col>
+            <Col>
+              <Link href="/cart">
+                <a>View cart</a>
+              </Link>
+              <Link href="/checkout">
+                <a>Finish order</a>
+              </Link>
+            </Col>
+          </Row>
         )}
-      </div>
-    </>
+      </ToastBody>
+    </Toast>
   );
 };
 
-export default Cart;
+export default React.memo(Cart);

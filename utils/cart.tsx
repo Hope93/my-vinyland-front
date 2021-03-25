@@ -1,3 +1,4 @@
+import { Col, ListGroupItem, Row } from "reactstrap";
 import type { CartProduct } from "../store/app-state";
 
 export const getTotalProductAmount = (cart: CartProduct[]) =>
@@ -18,13 +19,17 @@ export const getShoppingList = (cart: CartProduct[]) =>
   cart.map((product) => {
     const productAmount = getProductAmount(cart, product.item.id);
     return (
-      <li key={product.item.id}>
-        <img src={product.item.image} alt={product.item.name} />
-        <div>
-          <div>{product.item.name}</div>
-          <div>Quantity: {productAmount}</div>
-        </div>
-        <div>{(product.totalPrice).toFixed(2)}</div>
-      </li>
+      <ListGroupItem key={product.item.id}>
+        <Row>
+          <Col>
+            <img src={product.item.image} alt={product.item.name} />
+          </Col>
+          <Col>
+            <Row>{product.item.name}</Row>
+            <Row>Quantity: {productAmount}</Row>
+          </Col>
+          <Col>{product.totalPrice.toFixed(2)}</Col>
+        </Row>
+      </ListGroupItem>
     );
   });
