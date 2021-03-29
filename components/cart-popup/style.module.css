@@ -1,0 +1,15 @@
+.toastList {
+  position: absolute;
+  right: 0;
+  z-index: 1080;
+  /* float: right; */
+}
+
+.cart {
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.link, .link:hover {
+  color: black;
+}

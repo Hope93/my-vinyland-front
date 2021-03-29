@@ -1,6 +1,5 @@
-import SEO from "./SEO";
-import Header from "./Header";
-import Footer from "./Footer";
+import SEO from "../seo";
+import Header from "../header";
 import React from "react";
 
 type LayoutProps = {
@@ -13,7 +12,6 @@ const Layout = (props: LayoutProps) => (
     <SEO />
     <Header pageTitle={props.headerTitle} />
     {props.children}
-    <Footer />
   </>
 );
 

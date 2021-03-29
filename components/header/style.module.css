@@ -1,0 +1,32 @@
+.nav {
+  background-color: black;
+}
+
+.nav * {
+  color: white;
+}
+
+.collapseMotion > * {
+  position: fixed;
+}
+
+.link, .link:hover {
+  cursor: pointer;
+  color: white;
+  padding: 0;
+}
+
+.amount {
+  align-items: center;
+  background-color: red;
+  display: flex;
+  font-size: 0.75rem;
+  height: 1rem;
+  justify-content: center;
+  padding: 0;
+  width: 1rem;
+}
+
+.hidden {
+  display: none;
+}

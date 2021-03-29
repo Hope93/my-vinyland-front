@@ -1,0 +1,27 @@
+h1 {
+  color: black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body, .btn {
+  font-size: 10px;
+}
+
+@media (min-width: 768px) {
+  body, .btn {
+    font-size: 16px;
+  }
+}
+
+.myContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.myCol {
+  flex: 0 0 33.33%;
+}

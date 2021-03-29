@@ -1,5 +1,6 @@
 import { Col, ListGroupItem, Row } from "reactstrap";
 import type { CartProduct } from "../store/app-state";
+import styles from './style.module.css'
 
 export const getTotalProductAmount = (cart: CartProduct[]) =>
   cart.reduce((accumulator, product) => accumulator + product.quantity, 0);
@@ -22,7 +23,7 @@ export const getShoppingList = (cart: CartProduct[]) =>
       <ListGroupItem key={product.item.id}>
         <Row>
           <Col>
-            <img src={product.item.image} alt={product.item.name} />
+            <img className={`${styles.img}`} src={product.item.image} alt={product.item.name} />
           </Col>
           <Col>
             <Row>{product.item.name}</Row>

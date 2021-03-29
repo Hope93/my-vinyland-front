@@ -1,14 +1,24 @@
-import Layout from "../components/Layout";
-import ProductCard from "../components/ProductCard";
+import Layout from "../components/layout";
+import ProductCard from "../components/product-card";
 import vinylProducts, { Product } from "../products";
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import {
+  Container,
+  Col,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  CardText,
+} from "reactstrap";
 
 const Home = () => {
   const title = "Vinyls List";
   // need to keep track of state and local storage for cart
   const products = vinylProducts.map((product: Product) => (
-    <Col key={product.id}>
+    <Col key={product.id} className="p-3 myCol">
       <ProductCard product={product} />
     </Col>
   ));
@@ -16,9 +26,7 @@ const Home = () => {
   return (
     <>
       <Layout headerTitle={title}>
-        <Container>
-          <Row>{products}</Row>
-        </Container>
+        <div className="container myContainer">{products}</div>
       </Layout>
     </>
   );

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import { useAppContext } from "../context/app-context";
 import { getTotalPrice } from "../utils/cart";
-import { Table, Row, Col } from "reactstrap";
+import { Table, Row, Col, ButtonGroup, Button } from "reactstrap";
 
 const Cart = () => {
   const { cart, dispatch } = useAppContext();
@@ -14,72 +14,74 @@ const Cart = () => {
         <>
           <Table>
             <thead>
-              <tr>
-                <th></th>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Subtotal</th>
+              <tr className="row mx-0">
+                <th className="col"></th>
+                <th className="col">Product</th>
+                <th className="col">Qty</th>
+                <th className="col">Subtotal</th>
               </tr>
             </thead>
             <tbody>
               {cart.map((product) => (
-                <tr key={product.item.id}>
-                  <td>{<img src={product.item.image} />}</td>
-                  <td>
-                    {product.item.name}
-                    {product.item.discountedPrice}
-                    {product.item.price}
+                <tr className="row mx-0" key={product.item.id}>
+                  <td className="col">{<img src={product.item.image} />}</td>
+                  <td className="col">
+                    <Row>{product.item.name}</Row>
+                    <Row>
+                      {product.item.discountedPrice
+                        ? product.item.discountedPrice
+                        : product.item.price}
+                    </Row>
                   </td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        dispatch({ type: "REMOVE_ONE", id: product.item.id })
-                      }
-                    >
-                      <svg viewBox="0 0 24 24">
-                        <path
-                          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2
-                      17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373
-                      12 12 12 12-5.373 12-12S18.627 0 12 0zm6 13H6v-2h12v2z"
-                        />
-                      </svg>
-                    </button>
-                    {product.quantity}
-                    <button
-                      onClick={() =>
-                        dispatch({ type: "ADD_PRODUCT", item: product.item })
-                      }
-                    >
-                      <svg viewBox="0 0 24 24">
-                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z" />
-                      </svg>
-                    </button>
+                  <td className="col">
+                    <ButtonGroup>
+                      <Button
+                        onClick={() =>
+                          dispatch({ type: "REMOVE_ONE", id: product.item.id })
+                        }
+                        className="p-1"
+                      >
+                        -
+                      </Button>
+                      <Button disabled className="p-1">
+                        {product.quantity}
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          dispatch({ type: "ADD_PRODUCT", item: product.item })
+                        }
+                        className="p-1"
+                      >
+                        +
+                      </Button>
+                    </ButtonGroup>
                   </td>
-                  <td>
-                    {product.totalPrice.toFixed(2)}
-                    <button
+                  <td className="col">
+                    <div className="mr-1">
+                      {product.totalPrice.toFixed(2)}
+                    </div>
+                    <Button
                       onClick={() =>
                         dispatch({
                           type: "REMOVE_PRODUCT",
                           id: product.item.id,
                         })
                       }
+                      className="p-1"
                     >
-                      <svg viewBox="0 0 24 24">
-                        <path d="M9 19a1 1 0 01-2 0V9a1 1 0 012 0v10zm4 0a1 1 0 01-2 0V9a1 1 0 012 0v10zm4 0a1 1 0 01-2 0V9a1 1 0 012 0v10zm5-17v2H2V2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2H22zm-3 4v16H5V6H3v18h18V6h-2z" />
-                      </svg>
-                    </button>
+                      <div>Remove All</div>
+                    </Button>
                   </td>
                 </tr>
               ))}
-              <tr>
-                <td>
-                  <Row>Total</Row>
-                  <Row>{getTotalPrice(cart).toFixed(2)}</Row>
+              <tr className="row mx-0">
+                <td className="col">
+                  <Row className="ml-1">Total</Row>
+                  <Row className="ml-1">{getTotalPrice(cart).toFixed(2)}</Row>
                 </td>
-                <td></td>
-                <td></td>
-                <td>
+                <td className="col"></td>
+                <td className="col"></td>
+                <td className="col">
                   <Link href="/checkout">
                     <a>Go to checkout</a>
                   </Link>
