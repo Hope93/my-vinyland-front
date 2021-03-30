@@ -48,6 +48,11 @@ const appReducer = (state: State, action: Action) => {
           (product: CartProduct): CartProduct => {
             if (product.item.id === action.id) {
               product.quantity--;
+              product.totalPrice =
+                product.totalPrice -
+                (product.item.discountedPrice
+                  ? product.item.discountedPrice
+                  : product.item.price);
             }
             return product;
           }

@@ -7,21 +7,24 @@ img {
   height: auto;
 }
 
-body, .btn {
-  font-size: 10px;
-}
-
-@media (min-width: 768px) {
-  body, .btn {
-    font-size: 16px;
-  }
-}
-
 .myContainer {
   display: flex;
   flex-wrap: wrap;
 }
 
 .myCol {
-  flex: 0 0 33.33%;
+  flex-basis: 100%;
+}
+
+.cropText {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .myCol {
+    flex: 0 0 33.33%;
+  }  
 }

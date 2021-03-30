@@ -26,8 +26,8 @@ const Cart = () => {
                 <tr className="row mx-0" key={product.item.id}>
                   <td className="col">{<img src={product.item.image} />}</td>
                   <td className="col">
-                    <Row>{product.item.name}</Row>
-                    <Row>
+                    <Row className="cropText">{product.item.name}</Row>
+                    <Row className="cropText">
                       {product.item.discountedPrice
                         ? product.item.discountedPrice
                         : product.item.price}
@@ -57,7 +57,7 @@ const Cart = () => {
                     </ButtonGroup>
                   </td>
                   <td className="col">
-                    <div className="mr-1">
+                    <div className="mr-1 cropText">
                       {product.totalPrice.toFixed(2)}
                     </div>
                     <Button
@@ -69,7 +69,7 @@ const Cart = () => {
                       }
                       className="p-1"
                     >
-                      <div>Remove All</div>
+                      Remove
                     </Button>
                   </td>
                 </tr>

@@ -12,7 +12,6 @@ import {
   Button,
   Container,
   Row,
-  Col,
 } from "reactstrap";
 import styles from "./style.module.css";
 
@@ -36,14 +35,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card>
       <CardImg top src={product.image} />
       <CardBody>
-        <CardTitle className="font-weight-bold ">
+        <CardTitle className="font-weight-bold cropText">
           {product.category.name}
         </CardTitle>
-        <CardSubtitle className="text-secondary">{product.name}</CardSubtitle>
-
+        <CardSubtitle className={`text-secondary cropText`}>{product.name}</CardSubtitle>
         <Container>
           <Row className={`${styles.row}`}>
-            <div className="mr-1">
+            <div className="mr-1 cropText">
               {product.discountedPrice
                 ? product.discountedPrice
                 : product.price}
