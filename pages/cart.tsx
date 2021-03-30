@@ -77,7 +77,7 @@ const Cart = () => {
               <tr className="row mx-0">
                 <td className="col">
                   <Row className="ml-1">Total</Row>
-                  <Row className="ml-1">{getTotalPrice(cart).toFixed(2)}</Row>
+                  <Row className="ml-1 ">{getTotalPrice(cart).toFixed(2)}</Row>
                 </td>
                 <td className="col"></td>
                 <td className="col"></td>
@@ -92,9 +92,9 @@ const Cart = () => {
         </>
       ) : (
         <>
-          <div>Your cart is empty</div>
+          <div className="ml-3 mt-3">Your cart is empty</div>
           <Link href="/">
-            <a>Go back to shopping</a>
+            <a className="ml-3" >Go back to shopping</a>
           </Link>
         </>
       )}
