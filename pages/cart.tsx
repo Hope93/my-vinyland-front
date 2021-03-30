@@ -43,7 +43,12 @@ const Cart = () => {
                       >
                         -
                       </Button>
-                      <Button disabled className="p-1">
+                      <Button
+                        disabled
+                        className="p-1 border-dark"
+                        color="text"
+                        outline
+                      >
                         {product.quantity}
                       </Button>
                       <Button
@@ -94,7 +99,7 @@ const Cart = () => {
         <>
           <div className="ml-3 mt-3">Your cart is empty</div>
           <Link href="/">
-            <a className="ml-3" >Go back to shopping</a>
+            <a className="ml-3">Go back to shopping</a>
           </Link>
         </>
       )}

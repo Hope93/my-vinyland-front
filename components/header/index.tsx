@@ -41,7 +41,7 @@ const Header = ({ pageTitle }: HeaderProps) => {
               onMouseEnter={() => {
                 setHover(true);
               }}
-              className={styles.link}
+              className={`${styles.link}`}
             >
               <Row>
                 <Col className="p-0 mr-1">Cart</Col>

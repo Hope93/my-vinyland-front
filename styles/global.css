@@ -7,6 +7,10 @@ img {
   height: auto;
 }
 
+.text {
+  color: black;
+}
+
 .myContainer {
   display: flex;
   flex-wrap: wrap;
