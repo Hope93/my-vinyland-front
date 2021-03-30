@@ -44,7 +44,7 @@ const Header = ({ pageTitle }: HeaderProps) => {
               className={styles.link}
             >
               <Row>
-                <Col className="p-0">Cart</Col>
+                <Col className="p-0 mr-1">Cart</Col>
                 <Col className={`p-0`}>
                   {amount > 0 && (
                     <div className={`rounded-circle ${styles.amount}`}>
