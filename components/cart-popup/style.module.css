@@ -2,7 +2,11 @@
   position: absolute;
   right: 0;
   z-index: 1080;
-  /* float: right; */
+}
+
+.myListGroup {
+  max-height: 300px;
+  overflow: scroll;
 }
 
 .cart {

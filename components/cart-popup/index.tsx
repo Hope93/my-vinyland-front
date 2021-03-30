@@ -38,7 +38,7 @@ const Cart = () => {
       </ToastHeader>
       <ToastBody>
       {amount === 0 && <div>Your cart is empty</div>}
-        <ListGroup>{cartList}</ListGroup>
+        <ListGroup className={styles.myListGroup}>{cartList}</ListGroup>
         {amount > 0 && (
           <Row>
             <Col>{totalPrice.toFixed(2)}</Col>
