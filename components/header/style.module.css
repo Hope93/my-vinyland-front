@@ -2,7 +2,7 @@
   background-color: black;
 }
 
-.nav * {
+.nav > .link {
   color: white;
 }
 
@@ -14,6 +14,11 @@
   cursor: pointer;
   color: white;
   padding: 0;
+}
+
+.hidden {
+  visibility: hidden;
+  text-transform: none;
 }
 
 .amount {
@@ -29,4 +34,7 @@
 }
 
 @media (min-width: 768px) {
+  .group:hover .hidden {
+    visibility: visible;
+  }
 }

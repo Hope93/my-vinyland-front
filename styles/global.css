@@ -30,5 +30,5 @@ img {
 @media (min-width: 768px) {
   .myCol {
     flex: 0 0 33.33%;
-  }  
+  }
 }

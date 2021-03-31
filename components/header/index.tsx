@@ -14,6 +14,8 @@ const InternalTitle = ({ pageTitle }: { pageTitle: string }) => (
   <h1>{pageTitle}</h1>
 );
 
+// use state to tell if I am hovering
+
 // optional prop for search form if it's the right page
 const Header = ({ pageTitle }: HeaderProps) => {
   const { cart } = useAppContext();
@@ -37,34 +39,28 @@ const Header = ({ pageTitle }: HeaderProps) => {
             <NavLink className={styles.link}>Vinyland</NavLink>
           </Link>
           <Link href="/cart">
-            <NavLink
-              onMouseEnter={() => {
-                setHover(true);
-              }}
-              className={`${styles.link}`}
-            >
-              <Row>
-                <Col className="p-0 mr-1">Cart</Col>
-                <Col className={`p-0`}>
-                  {amount > 0 && (
-                    <div className={`rounded-circle ${styles.amount}`}>
-                      {amount}
-                    </div>
-                  )}
-                </Col>
-              </Row>
-            </NavLink>
+            <div className={styles.group}>
+              <NavLink id="hoverLink" className={`${styles.link}`}>
+                <Row>
+                  <Col className="p-0 mr-1">Cart</Col>
+                  <Col className={`p-0`}>
+                    {amount > 0 && (
+                      <div className={`rounded-circle ${styles.amount}`}>
+                        {amount}
+                      </div>
+                    )}
+                  </Col>
+                </Row>
+              </NavLink>
+              <div className={styles.hidden}>
+                <Cart />
+              </div>
+            </div>
           </Link>
         </Navbar>
-        <Collapse
-          onMouseLeave={() => {
-            setHover(false);
-          }}
-          className={`${styles.collapseMotion}`}
-          isOpen={cartHover}
-        >
+        {/* <div id="cartPopup" className={styles.hidden}>
           <Cart />
-        </Collapse>
+        </div> */}
         <div className="ml-2">
           <InternalTitle pageTitle={pageTitle} />
         </div>
